@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="NeuroCardia frontend demonstration" />
+    <title>NeuroCardia | Cardiology Information System</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet" />
+    <style>body{font-family:Inter,sans-serif;background:#f8fafc}.nav-item.active{background:#eff6ff;color:#2563eb}.page{display:none}.page.active{display:block}.metric{box-shadow:0 1px 3px #0f172a0d}.modal{display:none}.modal.open{display:flex}</style>
+  </head>
+  <body class="text-slate-700">
+    <div class="min-h-screen md:flex">
+      <aside class="w-full border-b bg-white md:fixed md:h-screen md:w-64 md:border-b-0 md:border-r">
+        <div class="flex items-center gap-3 px-6 py-6 text-xl font-bold text-slate-900"><span class="grid h-9 w-9 place-items-center rounded-xl bg-blue-600 text-white"><i class="fa-solid fa-heart-pulse"></i></span>NeuroCardia</div>
+        <nav class="flex gap-1 overflow-auto px-3 pb-3 md:block md:space-y-1">
+          <button data-page="dashboard" class="nav-item active whitespace-nowrap rounded-lg px-4 py-3 text-left text-sm font-medium"><i class="fa-solid fa-grid-2 mr-3"></i>Dashboard</button>
+          <button data-page="patients" class="nav-item whitespace-nowrap rounded-lg px-4 py-3 text-left text-sm font-medium"><i class="fa-solid fa-users mr-3"></i>Patients</button>
+          <button data-page="doctors" class="nav-item whitespace-nowrap rounded-lg px-4 py-3 text-left text-sm font-medium"><i class="fa-solid fa-user-doctor mr-3"></i>Doctors</button>
+          <button data-page="visits" class="nav-item whitespace-nowrap rounded-lg px-4 py-3 text-left text-sm font-medium"><i class="fa-solid fa-calendar-check mr-3"></i>Visits</button>
+          <button data-page="reports" class="nav-item whitespace-nowrap rounded-lg px-4 py-3 text-left text-sm font-medium"><i class="fa-solid fa-file-waveform mr-3"></i>ECG Reports</button>
+          <button data-page="analytics" class="nav-item whitespace-nowrap rounded-lg px-4 py-3 text-left text-sm font-medium"><i class="fa-solid fa-chart-line mr-3"></i>Analytics</button>
+          <button data-page="assistant" class="nav-item whitespace-nowrap rounded-lg px-4 py-3 text-left text-sm font-medium"><i class="fa-solid fa-sparkles mr-3"></i>Clinical Assistant</button>
+        </nav>
+        <div class="hidden absolute bottom-0 w-full border-t p-4 text-xs text-slate-500 md:block">Frontend demonstration<br/>Mock data only</div>
+      </aside>
+      <main class="p-5 md:ml-64 md:p-9">
+        <header class="mb-8 flex items-center justify-between"><div><p class="text-sm text-slate-500">Cardiology Information System</p><h1 id="title" class="text-2xl font-bold text-slate-900">Overview</h1></div><button id="theme" class="rounded-lg border bg-white px-3 py-2" aria-label="Toggle contrast"><i class="fa-solid fa-moon"></i></button></header>
+        <section id="dashboard" class="page active">
+          <div class="mb-6 rounded-2xl bg-gradient-to-r from-blue-700 to-cyan-600 p-7 text-white"><p class="text-sm opacity-80">Good morning, clinician</p><h2 class="mt-1 text-2xl font-bold">Your cardiac care overview</h2><p class="mt-2 text-sm opacity-90">This is an interactive frontend prototype using fictional demonstration data.</p></div>
+          <div class="grid gap-4 sm:grid-cols-2 xl:grid-cols-4" id="metrics"></div>
+          <div class="mt-7 grid gap-6 xl:grid-cols-3"><div class="metric rounded-xl border bg-white p-5 xl:col-span-2"><h2 class="font-semibold text-slate-900">Today’s visits</h2><div id="today-visits" class="mt-4"></div></div><div class="metric rounded-xl border bg-white p-5"><h2 class="font-semibold text-slate-900">Report queue</h2><div class="mt-5 space-y-5"><div><div class="flex justify-between text-sm"><span>Draft review</span><b>6</b></div><div class="mt-2 h-2 rounded bg-amber-100"><div class="h-2 w-3/5 rounded bg-amber-500"></div></div></div><div><div class="flex justify-between text-sm"><span>Finalized</span><b>18</b></div><div class="mt-2 h-2 rounded bg-emerald-100"><div class="h-2 w-4/5 rounded bg-emerald-500"></div></div></div></div></div></div>
+        </section>
+        <section id="patients" class="page"><div class="mb-5 flex flex-wrap justify-between gap-3"><input id="patient-search" class="rounded-lg border px-4 py-2 text-sm" placeholder="Search mock patients" /><button class="action rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white" data-action="Added a mock patient">+ Add patient</button></div><div class="overflow-x-auto rounded-xl border bg-white"><table class="w-full text-left text-sm"><thead class="bg-slate-50 text-slate-500"><tr><th class="p-4">Patient</th><th class="p-4">Age</th><th class="p-4">Sex</th><th class="p-4">Last visit</th><th class="p-4">Status</th></tr></thead><tbody id="patient-table"></tbody></table></div></section>
+        <section id="doctors" class="page"><div class="grid gap-5 md:grid-cols-2 xl:grid-cols-3" id="doctor-cards"></div></section>
+        <section id="visits" class="page"><div class="rounded-xl border bg-white"><div class="border-b p-5"><h2 class="font-semibold text-slate-900">Appointments</h2><p class="mt-1 text-sm text-slate-500">Schedule and worklist demonstration</p></div><div id="visit-list" class="divide-y"></div></div></section>
+        <section id="reports" class="page"><div class="grid gap-5 xl:grid-cols-3"><div class="rounded-xl border bg-white p-5 xl:col-span-2"><h2 class="font-semibold text-slate-900">ECG report worklist</h2><div id="report-list" class="mt-4 divide-y"></div></div><div class="rounded-xl border bg-white p-5"><h2 class="font-semibold text-slate-900">Selected report</h2><div class="mt-5 rounded-lg bg-slate-50 p-4 text-sm"><p class="font-semibold">Demo ECG-024</p><p class="mt-2 text-slate-500">Normal sinus rhythm · 72 BPM</p><p class="mt-4 text-xs leading-5 text-slate-500">Clinical interpretations in this project are sample content only and must not be used for patient care.</p><button class="action mt-4 rounded-lg border px-3 py-2 text-sm" data-action="Opened a sample report">View sample</button></div></div></div></section>
+        <section id="analytics" class="page"><div class="grid gap-5 md:grid-cols-2"><div class="rounded-xl border bg-white p-5"><h2 class="font-semibold text-slate-900">Visits by modality</h2><div class="mt-8 flex h-48 items-end justify-around border-b"><div class="w-16 rounded-t bg-blue-600 text-center text-xs text-white" style="height:78%">ECG</div><div class="w-16 rounded-t bg-cyan-500 text-center text-xs text-white" style="height:45%">ETT</div><div class="w-16 rounded-t bg-indigo-400 text-center text-xs text-white" style="height:30%">Holter</div></div></div><div class="rounded-xl border bg-white p-5"><h2 class="font-semibold text-slate-900">Operational snapshot</h2><dl class="mt-5 space-y-4 text-sm"><div class="flex justify-between"><dt class="text-slate-500">Average review time</dt><dd class="font-semibold">14 min</dd></div><div class="flex justify-between"><dt class="text-slate-500">Completed reports</dt><dd class="font-semibold">78%</dd></div><div class="flex justify-between"><dt class="text-slate-500">Open appointments</dt><dd class="font-semibold">12</dd></div></dl></div></div></section>
+        <section id="assistant" class="page"><div class="mx-auto max-w-3xl rounded-xl border bg-white"><div class="border-b p-5"><h2 class="font-semibold text-slate-900">Clinical assistant demo</h2><p class="mt-1 text-sm text-slate-500">A local, non-clinical interface demo. It does not perform AI analysis.</p></div><div id="chat" class="h-72 space-y-3 overflow-auto p-5"><div class="max-w-md rounded-lg bg-slate-100 p-3 text-sm">Ask about the prototype interface or mock workflow.</div></div><form id="chat-form" class="flex gap-3 border-t p-4"><input id="chat-input" class="flex-1 rounded-lg border px-3 py-2 text-sm" placeholder="Type a demo message" /><button class="rounded-lg bg-blue-600 px-4 py-2 text-sm text-white">Send</button></form></div></section>
+      </main>
+    </div><div id="toast" class="fixed bottom-5 right-5 hidden rounded-lg bg-slate-900 px-4 py-3 text-sm text-white"></div>
+    <script type="module" src="./src/main.js"></script>
+  </body>
+</html>
